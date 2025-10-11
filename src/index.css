@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import "tailwindcss";
+
+/* Tipografia e alinhamento */
+:root {
+  color-scheme: light dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.container-prose p { @apply text-base text-gray-600 leading-relaxed; }
