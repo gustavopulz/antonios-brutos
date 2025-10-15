@@ -1,13 +1,25 @@
-import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Hero from "./sections/Hero";
+import Highlights from "./sections/Highlights";
+import About from "./sections/About";
+import Catalog from "./sections/Catalog";
+import Testimonials from "./sections/Testimonials";
+import FAQ from "./sections/FAQ";
+import CTA from "./sections/CTA";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 flex flex-col">
+    <div className="relative bg-hero-gradient">
       <Header />
-      <main className="flex-1">
-        <Outlet />
+      <main className="px-40">
+        <Hero />
+        <Highlights />
+        <About />
+        <Catalog />
+        <Testimonials />
+        <FAQ />
+        <CTA />
       </main>
       <Footer />
     </div>
