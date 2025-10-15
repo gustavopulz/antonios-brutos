@@ -8,7 +8,7 @@ export default function CTA() {
       title="Fale com a fábrica"
       subtitle="Preencha e clique para abrir o WhatsApp"
     >
-      <div className="card p-6">
+      <div className="card">
         <WhatsAppForm />
       </div>
     </Section>

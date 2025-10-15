@@ -15,7 +15,10 @@ const items = [
   },
 ];
 
+import { useState } from "react";
+
 export default function FAQ() {
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <Section
       id="faq"
@@ -23,20 +26,37 @@ export default function FAQ() {
       subtitle="Se tiver outra dúvida, chame no WhatsApp"
     >
       <div className="grid gap-4">
-        {items.map(({ q, a }) => (
-          <details
-            key={q}
-            className="group rounded-xl border border-white/10 bg-white/5 p-5"
-          >
-            <summary className="cursor-pointer list-none text-base font-medium">
-              {q}
-              <span className="float-right opacity-50 group-open:rotate-45 transition">
-                ＋
-              </span>
-            </summary>
-            <p className="mt-2 text-white/70">{a}</p>
-          </details>
-        ))}
+        {items.map(({ q, a }, idx) => {
+          const isOpen = open === idx;
+          return (
+            <div
+              key={q}
+              className={`rounded-xl border border-white/10 bg-white/5 p-5 cursor-pointer transition-all ${
+                isOpen ? "ring-2 ring-brand/30" : ""
+              }`}
+              onClick={() => setOpen(isOpen ? null : idx)}
+              tabIndex={0}
+              role="button"
+              aria-expanded={isOpen}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ")
+                  setOpen(isOpen ? null : idx);
+              }}
+            >
+              <div className="flex items-center justify-between text-base font-medium select-none">
+                {q}
+                <span
+                  className={`ml-2 opacity-50 transition-transform ${
+                    isOpen ? "rotate-45" : ""
+                  }`}
+                >
+                  ＋
+                </span>
+              </div>
+              {isOpen && <p className="mt-2 text-white/70">{a}</p>}
+            </div>
+          );
+        })}
       </div>
     </Section>
   );
